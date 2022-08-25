@@ -1,0 +1,1145 @@
+[
+    {
+        "id": "1a48354e5bfdf060",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9494cbbc6d3a5d1c",
+        "type": "ui_dropdown",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "label": "Unidade Temp:",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "1757080a76559efd",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Celsius",
+                "value": "c",
+                "type": "str"
+            },
+            {
+                "label": "Fahrenheit",
+                "value": "f",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 80,
+        "wires": [
+            [
+                "738b136a043e5163"
+            ]
+        ]
+    },
+    {
+        "id": "d2f0adf6b5247ed4",
+        "type": "ui_dropdown",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "label": "Unidade Pressão:",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "1757080a76559efd",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "Atm",
+                "value": "atm",
+                "type": "str"
+            },
+            {
+                "label": "Pascal",
+                "value": "p",
+                "type": "str"
+            },
+            {
+                "label": "MMHG",
+                "value": "mmhg",
+                "type": "str"
+            },
+            {
+                "label": "Milibar",
+                "value": "milibar",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "aba36d69797865d0"
+            ]
+        ]
+    },
+    {
+        "id": "082133b11aa1efe0",
+        "type": "ui_dropdown",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "label": "Unidade umid:",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "1757080a76559efd",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "kg/m³",
+                "value": "kgm",
+                "type": "str"
+            },
+            {
+                "label": "lb/ft³",
+                "value": "lbft",
+                "type": "str"
+            },
+            {
+                "label": "Relativa",
+                "value": "rel",
+                "type": "str"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 100,
+        "y": 200,
+        "wires": [
+            [
+                "0ec95b3a1b6a6892"
+            ]
+        ]
+    },
+    {
+        "id": "7a3ff6163b598275",
+        "type": "debug",
+        "z": "1a48354e5bfdf060",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "738b136a043e5163",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 1",
+        "func": "global.set(\"temp\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "7a3ff6163b598275"
+            ]
+        ]
+    },
+    {
+        "id": "6b279dae5c4f0613",
+        "type": "debug",
+        "z": "1a48354e5bfdf060",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "0ec95b3a1b6a6892",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 2",
+        "func": "global.set(\"hum\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 200,
+        "wires": [
+            [
+                "6b279dae5c4f0613"
+            ]
+        ]
+    },
+    {
+        "id": "7b268db15f144820",
+        "type": "debug",
+        "z": "1a48354e5bfdf060",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "aba36d69797865d0",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 3",
+        "func": "global.set(\"pres\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 320,
+        "wires": [
+            [
+                "7b268db15f144820"
+            ]
+        ]
+    },
+    {
+        "id": "decb964173a5f9fa",
+        "type": "ui_dropdown",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "label": "Fotoresistor:",
+        "tooltip": "",
+        "place": "Select option",
+        "group": "1757080a76559efd",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "multiple": false,
+        "options": [
+            {
+                "label": "1",
+                "value": 1,
+                "type": "num"
+            },
+            {
+                "label": "2",
+                "value": 2,
+                "type": "num"
+            }
+        ],
+        "payload": "",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 440,
+        "wires": [
+            [
+                "0113fe3ffb56b4d2"
+            ]
+        ]
+    },
+    {
+        "id": "cd918ef7a95abb48",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": " Seta a variavel global.get(\"temp\") através do dropdown (c, f)",
+        "info": "",
+        "x": 240,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "448237865ba77c7e",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": " Seta a variavel global.get(\"hum\") através do dropdown (kgm, lbft, rel)",
+        "info": "",
+        "x": 260,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "96560b0d0a604095",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": " Seta a variavel global.get(\"pres\") através do dropdown (atm, p, mmhg, milibar)",
+        "info": "",
+        "x": 290,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "adff879a78813f05",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Envia o fotoresistor selecionado (1, 2) via mqtt",
+        "info": "",
+        "x": 190,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ecebf45c85af9ecc",
+        "type": "mqtt in",
+        "z": "1a48354e5bfdf060",
+        "name": "temp",
+        "topic": "temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c9f09aee6979a50e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 660,
+        "wires": [
+            [
+                "9bb8d3b7d6cf1087"
+            ]
+        ]
+    },
+    {
+        "id": "a756a577d70cb0c9",
+        "type": "mqtt in",
+        "z": "1a48354e5bfdf060",
+        "name": "hum",
+        "topic": "hum",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c9f09aee6979a50e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 780,
+        "wires": [
+            [
+                "997d9c4b4e54a6ab"
+            ]
+        ]
+    },
+    {
+        "id": "f3a5a5c098967f0f",
+        "type": "mqtt in",
+        "z": "1a48354e5bfdf060",
+        "name": "pres",
+        "topic": "pres",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c9f09aee6979a50e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 880,
+        "wires": [
+            [
+                "5af7191d4d61af0d"
+            ]
+        ]
+    },
+    {
+        "id": "b566fd0705957c87",
+        "type": "mqtt in",
+        "z": "1a48354e5bfdf060",
+        "name": "foto_1",
+        "topic": "foto_1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c9f09aee6979a50e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 980,
+        "wires": [
+            [
+                "a579cde26e5130e3"
+            ]
+        ]
+    },
+    {
+        "id": "9bb8d3b7d6cf1087",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 4",
+        "func": "var unit = global.get(\"temp\");\nglobal.set(\"temperatura\", msg.payload);\n\nswitch(unit) {\n    case \"f\" :\n        // converte celsius pra fahrenheit\n        msg.payload = parseFloat(msg.payload) * 1.8 + 32;\n        break;\n    default:\n        msg.payload = parseFloat(msg.payload);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 660,
+        "wires": [
+            [
+                "6c9de35490cdce5d"
+            ]
+        ]
+    },
+    {
+        "id": "997d9c4b4e54a6ab",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 5",
+        "func": "var unit = global.get(\"hum\");\nvar temp= global.get(\"temperatura\");\n\nvar a = (17.62 * temp) / (temp + 243.12);\nvar b = Math.pow(2.71828, a);\nvar kgm = (msg.payload * 1.33 * b) / (temp + 273.16);\n\nswitch(unit) {\n    case \"kgm\" :\n        // converte\n        msg.payload = kgm;\n        break;\n    case \"lbft\":\n        // converte\n        msg.payload = kgm * (2.2 / 35.315);\n        break;\n    case \"rel\":\n        // converte\n        break;\n    default:\n        msg.payload = parseFloat(msg.payload);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 780,
+        "wires": [
+            [
+                "b88147110778121d"
+            ]
+        ]
+    },
+    {
+        "id": "5af7191d4d61af0d",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 6",
+        "func": "var unit = global.get(\"pres\");\nswitch (unit) {\n    case \"atm\":\n        // converte \n        msg.payload = parseFloat(msg.payload) * 9.87e-4;\n        break;\n    case \"p\":\n        // converte\n        msg.payload = parseFloat(msg.payload);\n        msg.payload = parseFloat(msg.payload) * 1e-2;\n        // msg.topic = \"pa\";\n        break;\n    case \"mmhg\":\n        // converte \n        msg.payload = parseFloat(msg.payload) * 7.5e-1;\n        break;\n    case \"milibar\":\n        // converte\n        msg.payload = parseFloat(msg.payload); \n        break;\n    default:\n        msg.payload = parseFloat(msg.payload);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 880,
+        "wires": [
+            [
+                "993295805faaa981"
+            ]
+        ]
+    },
+    {
+        "id": "a579cde26e5130e3",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 7",
+        "func": "var valor = parseFloat(msg.payload);\nmsg.foto_button = 1;\nmsg.valor = valor;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 980,
+        "wires": [
+            [
+                "669528462a91a229"
+            ]
+        ]
+    },
+    {
+        "id": "7554fc59d8ffa692",
+        "type": "ui_text",
+        "z": "1a48354e5bfdf060",
+        "group": "1757080a76559efd",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 750,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "25e65afaeec54811",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Entrada de temperatura mqtt e conversao de unidades",
+        "info": "",
+        "x": 220,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e6c207eceef2d2a5",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Entrada de humidade mqtt e conversao de unidades",
+        "info": "",
+        "x": 210,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "ce8acdac5ad1164c",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Entrada de pressão mqtt e conversao de unidades",
+        "info": "",
+        "x": 210,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "3185068918ddb315",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Entrada de fotoresistor mqtt",
+        "info": "",
+        "x": 140,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "6c9de35490cdce5d",
+        "type": "ui_chart",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "group": "1757080a76559efd",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 530,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "993295805faaa981",
+        "type": "ui_gauge",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "group": "1757080a76559efd",
+        "order": 24,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "preasure",
+        "label": "units",
+        "format": "{{msg.payload}}",
+        "min": "0",
+        "max": "1200",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 520,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "b88147110778121d",
+        "type": "ui_gauge",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "group": "1757080a76559efd",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "gtype": "wave",
+        "title": "Umidade do Ar",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#ca3838",
+            "#e6e600",
+            "#00b500"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 560,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "86e2ae4b514b9839",
+        "type": "ui_slider",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "label": "slider-motor",
+        "tooltip": "",
+        "group": "1757080a76559efd",
+        "order": 30,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": "90",
+        "step": 1,
+        "x": 90,
+        "y": 540,
+        "wires": [
+            [
+                "a8b6d68cbae29dbb"
+            ]
+        ]
+    },
+    {
+        "id": "a8b6d68cbae29dbb",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 8",
+        "func": "global.set(\"motor\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 540,
+        "wires": [
+            [
+                "c814dc594fd13d8f"
+            ]
+        ]
+    },
+    {
+        "id": "c814dc594fd13d8f",
+        "type": "debug",
+        "z": "1a48354e5bfdf060",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6a1e0bc104f5f6b5",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Seta valor do slider na variavel global.get(\"motor\")",
+        "info": "",
+        "x": 210,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "746b1b8424f3c832",
+        "type": "mqtt in",
+        "z": "1a48354e5bfdf060",
+        "name": "foto_2",
+        "topic": "foto_2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "c9f09aee6979a50e",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 70,
+        "y": 1080,
+        "wires": [
+            [
+                "88afe0b1566778e9"
+            ]
+        ]
+    },
+    {
+        "id": "88afe0b1566778e9",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 9",
+        "func": "var valor = parseFloat(msg.payload);\nmsg.foto_button = 2;\nmsg.valor = valor;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 1080,
+        "wires": [
+            [
+                "669528462a91a229"
+            ]
+        ]
+    },
+    {
+        "id": "8b7974343acfdbb5",
+        "type": "comment",
+        "z": "1a48354e5bfdf060",
+        "name": "Entrada de fotoresistor mqtt",
+        "info": "",
+        "x": 140,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "669528462a91a229",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 10",
+        "func": "if (global.get(\"foto_button\") == msg.foto_button) {\n    var valor = msg.valor;\n\n    var limiarApagado = 450;\n    var limiarMeiaLuz = 900;\n\n    if (valor <= limiarApagado)\n        msg.payload = \"Apagado\";\n    else if (valor <= limiarMeiaLuz)\n        msg.payload = \"Meia luz\";\n    else\n        msg.payload = \"Iluminado\";\n    \n    global.set(\"foto_value\", msg.payload);\n}\nmsg.payload = global.get(\"foto_value\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 1020,
+        "wires": [
+            [
+                "7554fc59d8ffa692"
+            ]
+        ]
+    },
+    {
+        "id": "0113fe3ffb56b4d2",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 11",
+        "func": "global.set(\"foto_button\", msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "028fbe97c2fe29e6",
+        "type": "aedes broker",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "dburl": "",
+        "usetls": false,
+        "x": 880,
+        "y": 80,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "9728952b2a100395",
+        "type": "telegram receiver",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "bot": "e14cc94d7a97b130",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 110,
+        "y": 1180,
+        "wires": [
+            [
+                "01845231d6e8a4b8"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "01845231d6e8a4b8",
+        "type": "function",
+        "z": "1a48354e5bfdf060",
+        "name": "function 12",
+        "func": "var grau = global.get(\"motor\");\nmsg.payload = grau;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 1180,
+        "wires": [
+            [
+                "1b0f2abf2e574d40"
+            ]
+        ]
+    },
+    {
+        "id": "1b0f2abf2e574d40",
+        "type": "mqtt out",
+        "z": "1a48354e5bfdf060",
+        "name": "",
+        "topic": "motorIoT2022",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "c9f09aee6979a50e",
+        "x": 620,
+        "y": 1180,
+        "wires": []
+    },
+    {
+        "id": "d1fcaf5a82bc488c",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 7,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "cb28cd923d58dd6d",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 8,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "9d120ef121069487",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 9,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "8e9a71f073f7c9aa",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 10,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "d2b1357866837518",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 11,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "dd02288dde58a77a",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 12,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "95f89d219d66d1ba",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 13,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "8bb009214f6114cc",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 14,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "badfa43ebcbaa0cf",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 15,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "3ed9cc036c302758",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 17,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "e6c0d155872606be",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 18,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "5ce47e53e85f3cc4",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 19,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "021aa9068fd66f9d",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 20,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "ead98e93e1248274",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 21,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "dd6e58ebf45fffe3",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 22,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "831219a1fecf22f2",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 23,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "4bb9857f2c7085dd",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 25,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "672cb4c81a7d7184",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 26,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "0be5fd09bb2c3490",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 27,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "99f76c8f2afba0db",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 28,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "cc488e7e12ccfc3e",
+        "type": "ui_spacer",
+        "z": "1a48354e5bfdf060",
+        "name": "spacer",
+        "group": "1757080a76559efd",
+        "order": 29,
+        "width": 10,
+        "height": 1
+    },
+    {
+        "id": "1757080a76559efd",
+        "type": "ui_group",
+        "name": "Group",
+        "tab": "d31d34f8807a7246",
+        "order": null,
+        "disp": true,
+        "width": 10
+    },
+    {
+        "id": "c9f09aee6979a50e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "e14cc94d7a97b130",
+        "type": "telegram bot",
+        "botname": "Iot_ufrj_2022_1",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "d31d34f8807a7246",
+        "type": "ui_tab",
+        "name": "Tab 1",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
