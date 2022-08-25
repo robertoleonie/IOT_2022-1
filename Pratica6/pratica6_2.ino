@@ -1,66 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Arduino connectivity test</title>
-
-    <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="container">
-        <h1>johnny-five test</h1>
-    <div class="row">
-      <div class="col-md-12">
-      <h4>LED piscante verde</h4>
-      <div class="btn-group" data-toggle="buttons">
-        <input id="ledBlinking" type="range" min="0" max="1024" step="1"/>
-      </div>
-      <h4>LED intensidade vermelho</h4>
-      <div class="btn-group" data-toggle="buttons">
-        <input id="ledIntensity" type="range" min="0" max="1024" step="1"/>
-      </div>
-      </div>
-    </div>
-    </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-
-      var socket = io.connect('http://localhost:8000/');
-
-      socket.on('news', function (data) {
-        console.log(data);
-      });
-
-      $('#ledBlinking').on('input', function(){
-        var tmp = parseInt($('#ledBlinking').val(), 10);
-        console.log("Setting LED Delay:", tmp)
-        socket.emit('ledBlinking', {led_slider: tmp});
-      });
-
-      $('#ledIntensity').on('input', function(){
-        var tmp = parseInt($('#ledIntensity').val(), 10);
-        console.log("Setting LED Delay:", tmp)
-        socket.emit('ledIntensity', {led_slider: tmp});
-      });
-
-    </script>
-    </body>
-</html>
+//Programa : Teste MPU6050 e LCD 20x4
+//Alteracoes e adaptacoes : FILIPEFLOP
+//
+//Baseado no programa original de JohnChi
+ 
+//Carrega a biblioteca Wire
+#include<Wire.h>
+ 
+//Endereco I2C do MPU6050
+const int MPU=0x68;  
+//Variaveis para armazenar valores dos sensores
+int AcX,AcY,AcZ,Tmp,GyX,GyY,GyZ;
+void setup()
+{
+  Serial.begin(115200);
+  Wire.begin();
+  Wire.beginTransmission(MPU);
+  Wire.write(0x6B); 
+   
+  //Inicializa o MPU-6050
+  Wire.write(0); 
+  Wire.endTransmission(true);
+     
+}
+void loop()
+{
+  Wire.beginTransmission(MPU);
+  Wire.write(0x3B);  // starting with register 0x3B (ACCEL_XOUT_H)
+  Wire.endTransmission(false);
+  //Solicita os dados do sensor
+  Wire.requestFrom(MPU,14,true);  
+  //Armazena o valor dos sensores nas variaveis correspondentes
+  AcX=Wire.read()<<8|Wire.read();  //0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)     
+  AcY=Wire.read()<<8|Wire.read();  //0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
+  AcZ=Wire.read()<<8|Wire.read();  //0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)
+  Tmp=Wire.read()<<8|Wire.read();  //0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)
+  GyX=Wire.read()<<8|Wire.read();  //0x43 (GYRO_XOUT_H) & 0x44 (GYRO_XOUT_L)
+  GyY=Wire.read()<<8|Wire.read();  //0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
+  GyZ=Wire.read()<<8|Wire.read();  //0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
+   
+  //Envia valor X do acelerometro para a serial e o LCD
+  Serial.print("AcX = "); Serial.print(AcX);
+   
+  //Envia valor Y do acelerometro para a serial e o LCD
+  Serial.print(" | AcY = "); Serial.print(AcY);
+   
+  //Envia valor Z do acelerometro para a serial e o LCD
+  Serial.print(" | AcZ = "); Serial.print(AcZ);
+   
+  //Envia valor da temperatura para a serial e o LCD
+  //Calcula a temperatura em graus Celsius
+  Serial.print(" | Tmp = "); Serial.print(Tmp/340.00+36.53);
+   
+  //Envia valor X do giroscopio para a serial e o LCD
+  Serial.print(" | GyX = "); Serial.print(GyX);
+   
+  //Envia valor Y do giroscopio para a serial e o LCD  
+  Serial.print(" | GyY = "); Serial.print(GyY);
+   
+  //Envia valor Z do giroscopio para a serial e o LCD
+  Serial.print(" | GyZ = "); Serial.println(GyZ);
+   
+  //Aguarda 300 ms e reinicia o processo
+  delay(300);
+}
