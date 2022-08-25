@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+
+<body>
+
+<canvas id="myTempChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="myPresChart" style="width:100%;max-width:600px"></canvas>
+<canvas id="myAltChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+var socket = io.connect('http://localhost:8000/');
+var tempCount = 0;
+var presCount = 0;
+var altCount = 0;
+
+var tempChart = new Chart("myTempChart", {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [{
+      fill: false,
+      pointRadius: 1,
+      borderColor: "rgba(255,0,0,0.5)",
+      data: []
+    }]
+  },    
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Temperatura X segundo",
+      fontSize: 16
+    }
+  }
+});
+var presChart = new Chart("myPresChart", {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [{
+      fill: false,
+      pointRadius: 1,
+      borderColor: "rgba(0,255,0,0.5)",
+      data: []
+    }]
+  },    
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Pressao X segundo",
+      fontSize: 16
+    }
+  }
+});
+var altChart = new Chart("myAltChart", {
+  type: "line",
+  data: {
+    labels: [],
+    datasets: [{
+      fill: false,
+      pointRadius: 1,
+      borderColor: "rgba(0,0,255,0.5)",
+      data: []
+    }]
+  },    
+  options: {
+    legend: {display: false},
+    title: {
+      display: true,
+      text: "Altitude X segundo",
+      fontSize: 16
+    }
+  }
+});
+
+socket.on('new_temp', (data) => {
+    tempChart.data.labels.push(tempCount);
+    tempCount++;
+    tempChart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    tempChart.update();
+});
+socket.on('new_pres', (data) => {
+    presChart.data.labels.push(presCount);
+    presCount++;
+    presChart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    presChart.update();
+});
+socket.on('new_alt', (data) => {
+    altChart.data.labels.push(altCount);
+    altCount++;
+    altChart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    altChart.update();
+});
+</script>
+
+</body>
+</html>
